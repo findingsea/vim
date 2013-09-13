@@ -56,6 +56,8 @@ Bundle 'Valloric/YouCompleteMe'
 " 窗口半透明
 Bundle 'VimTweak'
 
+Bundle 'scrooloose/syntastic'
+
 let g:EasyMotion_leader_key = '\\'
 
 filetype plugin indent on     " required!
@@ -101,11 +103,11 @@ set autochdir
 set diffexpr=MyDiff()
 set nobackup
 set guifont=Monaco:h16
-set fileencodings=utf-8,gb18030
-
+set fileencodings=utf-8,gb18030id
+set transparency=8    "设置窗口透明度
 colorscheme grayorange
 
-let g:ycm_global_ycm_extra_conf =  '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf =  '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 function MyDiff()
   let opt = '-a --binary '
@@ -139,6 +141,8 @@ nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+map <C-x> :pclose<CR>
+imap <C-x> <ESC>:pclose<CR>a
 function Do_CsTag()
     let dir = getcwd()
     if filereadable("tags")
@@ -204,7 +208,7 @@ let Tlist_File_Fold_Auto_Close=1 "非当前文件，函数列表折叠隐藏
 let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动推出vim
 let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。不是一直实时更新tags，因为没有必要
 let Tlist_Inc_Winwidth=0
-set completeopt=menu
+" set completeopt=meu
 "单个文件编译
 map <F5> :call Do_OneFileMake()<CR>
 function Do_OneFileMake()
@@ -276,3 +280,4 @@ function Do_make()
     execute "silent make"
     execute "copen"
 endfunction
+
